@@ -1,0 +1,63 @@
+12:46:07 | info    | Opening log file 'ics_template.conf_log.txt'.
+12:46:07 | info    | Running music!, version 1.53
+12:46:07 | info    | Log is for run started Fri Aug 31 12:46:07 2018 
+12:46:07 | info    | Code was compiled using FFTW version 3.x
+12:46:07 | info    | Code was compiled for multi-threaded FFTW
+12:46:07 | info    | Running with a maximum of 64 OpenMP threads
+12:46:07 | info    | Code was compiled for double precision.
+12:46:07 | info    | Using k-space sampled transfer functions...
+12:46:07 | info    | Selecting transfer function plug-in  : eisenstein
+12:46:07 | info    | Selecting region generator plug-in  : box
+12:46:07 | info    | Selecting random number generator plug-in  : MUSIC
+12:46:07 | info    | Grid structure for Poisson solver:
+12:46:07 | info    |    Domain shifted by      (    0,    0,    0)
+12:46:07 | info    |    Level   9 :   offset = (    0,    0,    0)
+12:46:07 | info    |                    size = (  512,  512,  512)
+12:46:07 | info    | Grid structure for density convolution:
+12:46:07 | info    |    Domain shifted by      (    0,    0,    0)
+12:46:07 | info    |    Level   9 :   offset = (    0,    0,    0)
+12:46:07 | info    |                    size = (  512,  512,  512)
+12:46:07 | info    | Computing white noise...
+12:46:07 | info    | Found 0 density constraint(s) to be obeyed.
+12:46:07 | info    | Generating random numbers (2) with seed 34567
+12:46:07 | info    | Generating random numbers w/ sample cube size of 32
+12:46:09 | info    | Storing white noise field in file 'wnoise_0009.bin'...
+12:46:15 | info    | Entering 1LPT branch
+12:46:15 | info    | Computing dark matter displacements...
+12:46:15 | info    | Using k-space transfer function kernel.
+12:46:16 | info    | Performing noise convolution on level   9
+12:46:16 | info    | Loading white noise from file 'wnoise_0009.bin'...
+12:46:17 | info    | Performing kernel convolution on (  512,  512,  512) grid
+12:46:17 | info    | Performing forward FFT...
+12:46:18 | info    | Performing backward FFT...
+12:46:20 | info    | Finished computing the density field in 5.347166s
+12:46:21 | info    | Grid mean density is 3.06321e-322. Correcting...
+12:46:21 | info    | Writing CDM data
+12:46:42 | info    | Global density extrema: 
+12:46:42 | info    |   minimum: delta=-17.011135 at (0.870117,0.350586,0.286133)
+12:46:42 | info    |        shifted back at (0.870117,0.350586,0.286133)
+12:46:42 | info    |   maximum: delta=17.697845 at (0.877930,0.219727,0.233398)
+12:46:42 | info    |        shifted back at (0.877930,0.219727,0.233398)
+12:46:44 | info    | Entering k-space Poisson solver...
+12:46:44 | info    | Performing forward transform.
+12:46:44 | info    | Performing backward transform.
+12:46:46 | info    | Done with k-space Poisson solver.
+12:46:46 | info    | Writing CDM potential
+12:46:50 | info    | Computing a gradient in k-space... 
+12:46:53 | info    | Done with k-space gradient. 
+12:46:53 | info    | max. x-displacement of HR particles is -27.695793 [mean dx]
+12:46:53 | info    | Writing CDM displacements
+12:46:57 | info    | Computing a gradient in k-space... 
+12:47:00 | info    | Done with k-space gradient. 
+12:47:00 | info    | max. y-displacement of HR particles is 27.702524 [mean dx]
+12:47:01 | info    | Writing CDM displacements
+12:47:05 | info    | Computing a gradient in k-space... 
+12:47:07 | info    | Done with k-space gradient. 
+12:47:07 | info    | max. z-displacement of HR particles is -27.444410 [mean dx]
+12:47:07 | info    | Writing CDM displacements
+12:47:12 | info    | Computing velocitites...
+12:47:13 | info    | Computing a gradient in k-space... 
+12:47:15 | info    | Done with k-space gradient. 
+12:47:16 | info    | sigma of x-velocity of high-res particles is 0.563714
+12:47:16 | info    | Writing CDM velocities
+12:47:21 | info    | Computing a gradient in k-space... 
