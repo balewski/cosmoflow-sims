@@ -1,0 +1,19 @@
+
+
+MUSIC: 
+to compile: 
+
+cd MUSIC
+
+module unload darshan
+
+module load cray-fftw gsl cray-hdf5
+
+make
+
+to run for three cosmological parameters:
+
+cd OmSiNs
+
+python runCode.py
+
