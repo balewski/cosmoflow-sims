@@ -4,6 +4,9 @@ import math
 
 import sys
 
+### This code will take the output of one NBody simulation (ie from the pycola code), and split it into 8 sub-volumes, and histogram them. 
+
+## ddefining which files to run over. Basically this was added just to allow me to run multiple jobs in parallel. 
 
 start = int(sys.argv[1])
 stop = 2005
@@ -33,7 +36,7 @@ for afile in os.listdir("OmSiNs/"):
 
     os.mkdir(outdir)
     
-    ### First, read in the px/py/pz
+    ### First, read in the px/py/pz from the pycola output file
     data = np.load(infile)
 
     px = data['px']
@@ -61,18 +64,17 @@ for afile in os.listdir("OmSiNs/"):
     print "one big array!", ps.shape, ps[0,:]
 
     
-    ## OK! Then this is indeed a big old array. Now I want to histogram it. 
+    ## OK! Then this is indeed a big old array. Now I want to histogram it.
+    ## this step goes from a set of parcile coordinates to a histogram of particle counts 
     nbins = 256
     H, bins = np.histogramdd(ps, nbins, range=((0,512),(0,512),(0,512)) )
 
     print "histo dshape!", H.shape,  H[0][0][0]
 
-    ### this appears to be a 512^3 histogram! Gosh, I hope it's doing the right thing. 
+   
 
-
-
-
-    ### now I have my density estimate, I split it up and write it out
+    ### now I have my histogram of particle density, I split it up into 8 subvolumes and write it out
+    ### note that the file structure here is required from the legacy CosmoFlow code. One dir is created for each NBody output file, then the 8 sub-volumes are named [0-7].npy inside that dir. 
     count = -1
     for i in range(0, 256, 128):
         for j in range(0, 256, 128):
@@ -80,8 +82,6 @@ for afile in os.listdir("OmSiNs/"):
                 
                 count+=1
                 d = H[i:(i+128),j:(j+128),k:(k+128)]
-                #print d.shape
-                #filename = outdir+"/"+str(i)+"_"+str(j)+"_"+str(k)+".npy"
                 filename = outdir+"/"+str(count)+".npy"
                 np.save(filename, d)
     print "got:", count

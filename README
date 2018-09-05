@@ -17,3 +17,66 @@ cd OmSiNs
 
 python runCode.py
 
+
+--------------------
+
+
+pycola:
+
+First step: make a conda env with the correct python modules in it. I called this "cola", could obviously be anything you like. 
+
+conda create -n cola python=2.7 numpy 
+source activate cola 
+pip install --global-option=build_ext --global-option=-L/usr/common/software/fftw/3.3.4/hsw/gnu/lib --global-option=-I/usr/common/software/fftw/3.3.4/hsw/gnu/include pyfftw 
+conda install scipy 
+conda install h5py 
+conda install matplotlib 
+
+to compile:
+
+module load python
+
+source activate NAME_OF_YOUR_CONDA_ENV
+
+python setup.py build_ext -—inplace
+
+
+
+to run: 
+
+module load python
+
+source activate NAME_OF_YOUR_CONDA_ENV
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/common/software/fftw/3.3.4/hsw/gnu/lib/
+
+
+Need a MUSIC file to run over as input file. 
+pycola will need to run one job for every input file. I used taskfarmer to bundle all the jobs into units that would run effectively on Cori. 
+
+In pycola/OmSiNs/taskfarmer, 
+- writeTasks.py makes the list of tasks that you will feed into taskfarmer. 
+- taskwrapper.sh actually contains the tasks to be run. *You will need to change the path in this file to point to your own directory, and to activate your own conda env*
+- taskfarmer.sh is the batch file to submit. Usual options apply. You'll at least need to edit to poitn to the correct dir for your installation. 
+
+This will run the file:
+cosmoflow-sims/pycola/pycola-OmSiNs-template.py
+which looks at all the hdf5 files in the directory cosmoflow-sims/MUSIC/OmSiNs/ that were produced by the MUSIC code you just ran. It'll run the pycola code (the N-body simulation code) over each of those hdf5 files. The output is put into the pycola/OmSiNs directory. 
+
+Note that when I was running this, I'd delete the tfin files after each taskfarmer run, as there seemed to be some confusion if I tried to use the in-built taskfarmer checks for which jobs had completed. Instead I had the code check for completion of the task list. 
+
+
+--------------------
+
+Reformatting the NBody files
+This code does two things 
+1) makes a histogram of particle counts out of the list of particle coordinates
+2) Splits that histogram into 8 sub-volumes
+
+just run :
+
+cosmoflow-sims/pycola> python reformatNBody-noCiC-Ns-128from256.py  0
+
+The argument for this defines which file in the pycola output dir you start with. I put this in so I could run multiple versions of this code at the same time over the same output dir. 
+
+The output of this code is a directory inside the OmSiNs dir that has the name of the 3 cosmo params behind the simulation. Inside that dir are 8 npy files, each of which is a histogram of particle counts. 
