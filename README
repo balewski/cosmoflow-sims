@@ -80,3 +80,18 @@ cosmoflow-sims/pycola> python reformatNBody-noCiC-Ns-128from256.py  0
 The argument for this defines which file in the pycola output dir you start with. I put this in so I could run multiple versions of this code at the same time over the same output dir. 
 
 The output of this code is a directory inside the OmSiNs dir that has the name of the 3 cosmo params behind the simulation. Inside that dir are 8 npy files, each of which is a histogram of particle counts. 
+
+
+--------------------
+
+Making the list of files for input into the CosmoFlow IO code
+
+The next stage of formatting involves putting these sub-volume files into a format required by the CosmoFlow IO code, for when it makes the TFRecord files you'll actually use in the tensorflow training. For this we need a list of cosmologies, and we need to re-name all the dirs we just made to numbers that correspond to the position of this simulation on the list. 
+I know this is not a very sensible solution. 
+
+First run :
+cosmoflow-sims/pycola/OmSiNs/makeList.py
+to make the list, then run:
+
+cosmoflow-sims/pycola/OmSiNs/copyFiles.py
+to make new dirs with new names. Note that I'm copying them, rather than moving the dir, because I am cautious and didn't want to have to re-make all these files again. 
