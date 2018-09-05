@@ -24,7 +24,7 @@ for afile in os.listdir("OmSiNs/"):
 
     print counter, infile
 
-    outdir = infile[:-4]+"-noCiC-128from256"
+    outdir = infile[:-4]
     if os.path.exists(outdir):
         if len(os.listdir(outdir))==8:
             print "done this one!"
