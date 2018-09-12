@@ -76,7 +76,7 @@ This code does two things
 
 just run :
 
-cosmoflow-sims/pycola> python reformatNBody-noCiC-Ns-128from256.py  0
+cosmoflow-sims/pycola> python reformatNBody.py  0
 
 The argument for this defines which file in the pycola output dir you start with. I put this in so I could run multiple versions of this code at the same time over the same output dir. 
 
